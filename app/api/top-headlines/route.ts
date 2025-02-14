@@ -1,10 +1,6 @@
 import { NextResponse } from "next/server";
 
-const apiKeys = [
-  "0ddb94b973ce499fa95bcaf95a4efe91",
-  "73bc66ed028d40b28e50d50c078f8c9f",
-];
-
+import { apiKeys } from "../keys";
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const queryString = searchParams.toString();
@@ -40,7 +36,7 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch from News API" },
       { status: 500 }

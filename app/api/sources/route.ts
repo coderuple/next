@@ -1,11 +1,8 @@
 import { NextResponse } from "next/server";
 
-const apiKeys = [
-  "0ddb94b973ce499fa95bcaf95a4efe91",
-  "73bc66ed028d40b28e50d50c078f8c9f",
-];
+import { apiKeys } from "../keys";
 
-export async function GET(request: Request) {
+export async function GET() {
   try {
     const response = await fetch("https://newsapi.org/v2/sources", {
       headers: {
@@ -31,7 +28,7 @@ export async function GET(request: Request) {
     }
 
     return NextResponse.json(data);
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       { error: "Failed to fetch from News API" },
       { status: 500 }
