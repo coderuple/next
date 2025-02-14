@@ -37,7 +37,7 @@ export async function GET(request: Request) {
             },
           });
         } else {
-          console.log("Failed to fetch from News API", apiKeys[i]);
+          console.log("Failed to fetch from News API With Key", apiKeys[i]);
         }
       }
     }
