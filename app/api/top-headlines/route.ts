@@ -30,12 +30,22 @@ export async function GET(request: Request) {
         );
         if (retryResponse.ok) {
           const data = await retryResponse.json();
-          return NextResponse.json(data);
+          return new NextResponse(JSON.stringify(data), {
+            headers: {
+              "Cache-Control": "no-store, no-cache, must-revalidate",
+              Pragma: "no-cache",
+            },
+          });
         }
       }
     }
 
-    return NextResponse.json(data);
+    return new NextResponse(JSON.stringify(data), {
+      headers: {
+        "Cache-Control": "no-store, no-cache, must-revalidate",
+        Pragma: "no-cache",
+      },
+    });
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch from News API" },
