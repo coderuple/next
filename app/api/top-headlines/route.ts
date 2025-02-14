@@ -36,16 +36,13 @@ export async function GET(request: Request) {
               Pragma: "no-cache",
             },
           });
+        } else {
+          console.log("Failed to fetch from News API", apiKeys[i]);
         }
       }
     }
 
-    return new NextResponse(JSON.stringify(data), {
-      headers: {
-        "Cache-Control": "no-store, no-cache, must-revalidate",
-        Pragma: "no-cache",
-      },
-    });
+    return new NextResponse(JSON.stringify(data));
   } catch {
     return NextResponse.json(
       { error: "Failed to fetch from News API" },
